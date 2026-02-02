@@ -1,0 +1,44 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# 工作区文件（任务相关）
+tasks/task-*
+converted/*
+roles/0-requirement-processor/converted/*
+
+# 保留目录结构
+!tasks/.gitkeep
+!converted/.gitkeep
+!roles/0-requirement-processor/converted/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# 日志文件
+*.log
+*.tmp
+*.temp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 临时文件
+*.bak
+*.cache
+.pytest_cache/
