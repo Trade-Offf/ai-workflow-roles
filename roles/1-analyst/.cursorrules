@@ -668,18 +668,13 @@ profit_sharing_record 表：
 
 ---
 
-## 📊 项目上下文
-
-当前项目：management-platform
-- 主应用：Vue 3 + Element Plus
-- ls-cms：Vue 3 + Element Plus  
-- operation-platform：React 17 + Ant Design
-- cashinout：React 16 + Ant Design
+## 🎯 技术无关性原则
 
 **重要提醒**：
 - 你只需要说明功能是什么，不需要关心用什么技术栈
 - 不要在需求文档中指定使用 Vue 还是 React
 - 不要指定使用哪个 UI 组件库
+- 项目的技术选型由开发团队决定，产品分析师只关注业务需求
 
 ---
 
