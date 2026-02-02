@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"name": "management-platform",
+			"path": "management-platform"
+		},
+		{
+			"path": "specs"
+		}
+	],
+	"settings": {}
+}

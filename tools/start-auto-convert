@@ -1,0 +1,21 @@
+#!/bin/bash
+# 一键启动自动转换
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# 检查是否已在运行
+if pgrep -f "auto-convert.sh" > /dev/null; then
+    echo "⚠️  自动转换器已在运行"
+    echo ""
+    echo "如需重启："
+    echo "  pkill -f auto-convert.sh"
+    echo "  $0"
+    exit 0
+fi
+
+# 启动
+echo "🚀 启动自动文档转换器..."
+bash "$SCRIPT_DIR/auto-convert.sh"
+
+
+
