@@ -59,6 +59,7 @@ echo -e "${BLUE}📁 创建目录结构...${NC}"
 mkdir -p "${FULL_PATH}/0-input/designs"
 mkdir -p "${FULL_PATH}/0-input/original"
 mkdir -p "${FULL_PATH}/1-analysis"
+mkdir -p "${FULL_PATH}/1.5-design-spec"
 mkdir -p "${FULL_PATH}/2-development"
 mkdir -p "${FULL_PATH}/3-testing"
 
@@ -143,16 +144,54 @@ cat > "$PROMPTS_FILE" << EOF
 
 ---
 
+## 🎯 Chat 1.5: Figma 翻译员（可选）
+
+**适用场景**: 有Figma设计稿需要提取设计规范
+
+\`\`\`
+你是Figma翻译员，请遵守以下规则：
+@roles/1.5-figma-translator/.cursorrules
+
+请从Figma设计稿中提取设计规范：
+
+PRD文档：
+@tasks/${TASK_DIR}/1-analysis/PRD.md
+
+Figma链接：
+[用户提供的Figma设计稿链接]
+
+任务：
+1. 使用MCP工具读取Figma设计信息
+2. 提取设计令牌（颜色、字体、间距、圆角等）
+3. 分析组件规范（按钮、输入框、表格等）
+4. 整理页面布局和交互状态
+5. 输出结构化的设计规范文档
+
+输出文件：
+- tasks/${TASK_DIR}/1.5-design-spec/DESIGN_SPEC.md
+- tasks/${TASK_DIR}/1.5-design-spec/HANDOFF_TO_DEV.md
+
+注意：
+- 确保Cursor已配置Figma MCP Server
+- 提供完整的Figma链接（包含node-id）
+- 如果没有Figma设计稿，可以跳过此阶段
+\`\`\`
+
+---
+
 ## 🎯 Chat 2: 前端开发
 
 \`\`\`
 你是前端开发工程师，请遵守以下规则：
 @roles/2-developer/.cursorrules
 
-请根据PRD开发功能：
+请根据PRD和设计规范开发功能：
 
 PRD文档：
 @tasks/${TASK_DIR}/1-analysis/PRD.md
+
+设计规范（如果有Figma设计稿）：
+@tasks/${TASK_DIR}/1.5-design-spec/DESIGN_SPEC.md
 
 项目信息：
 - 子应用：ls-cms（或 operation-platform / cashinout / main）
@@ -162,7 +201,7 @@ PRD文档：
 开发要求：
 1. 创建组件文件
 2. 实现业务逻辑
-3. 添加样式
+3. 根据设计规范添加样式（如果有）
 4. 遵循项目代码规范
 5. 输出开发文档
 
@@ -218,6 +257,7 @@ cat ${SPECS_ROOT}/roles/0-requirement-processor/converted/需求.md | pbcopy
 
 - [ ] 需求处理（如有文档）
 - [ ] 产品分析完成
+- [ ] Figma设计规范提取（如有设计稿）
 - [ ] 开发实现完成
 - [ ] 测试验证完成
 - [ ] 代码已提交
@@ -244,6 +284,7 @@ echo ""
 echo -e "2. ${YELLOW}为每个AI角色创建一个新Chat（Cmd/Ctrl + Shift + L）${NC}"
 echo "   - Chat 0: 需求处理员（可选，仅当有.docx/.pdf文档时）"
 echo "   - Chat 1: 产品分析师"
+echo "   - Chat 1.5: Figma翻译员（可选，仅当有Figma设计稿时）"
 echo "   - Chat 2: 前端开发"
 echo "   - Chat 3: 测试工程师"
 echo ""
